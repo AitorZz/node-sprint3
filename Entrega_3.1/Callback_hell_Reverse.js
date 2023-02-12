@@ -7,8 +7,8 @@
 const { readdir, readFile, writeFile } = require("fs/promises");
 
 const { join } = require("path");
-const inbox = join(__dirname,"inbox");
-const outbox = join(__dirname,"outbox");
+const inbox = join(__dirname, "inbox");
+const outbox = join(__dirname, "outbox");
 
 const reverseText = (str) => str.split("").reverse().join("");
 
@@ -16,13 +16,15 @@ async function modifydir() {
   try {
     const files = await readdir(inbox);
     for (const file of files) {
-      const textFile = await readFile(join(inbox, file), "utf8");
-      await writeFile(join(outbox, file), reverseText(textFile));
-      console.log(`Received ${textFile}`);
+      const textFileInbox = await readFile(join(inbox, file), "utf8");
+      await writeFile(join(outbox, file), reverseText(textFileInbox));
+      console.log(`Received ${textFileInbox}`);
     }
   } catch (err) {
     console.log(err);
-  }
-};
+  };
+ 
+  
+}
 
 modifydir();
