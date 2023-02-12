@@ -5,9 +5,9 @@ class Middleware {
     this.req = {};
 
     const prototype = Object.getPrototypeOf(this.calculator);
-    
+
     Object.getOwnPropertyNames(prototype).forEach((fn) => {
-      if (fn !== "constructor") return this.createFn(fn);
+      if (fn !== "constructor") return this.createFunction(fn);
     });
   }
   use(middleware) {
@@ -20,7 +20,7 @@ class Middleware {
       );
     }
   }
-  createFn(fn) {
+  createFunction(fn) {
     this[fn] = (args) => {
       this.req = args;
       this.executeMiddleware();
