@@ -1,6 +1,6 @@
 const Middleware = require("./middlewares.js");
 const Calculadora = require("./calculadora.js");
-const Parametres = require("./parametres.json");
+
 
 const calculator = new Calculadora();
 const app = new Middleware(calculator);
